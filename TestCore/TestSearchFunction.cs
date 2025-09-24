@@ -72,12 +72,13 @@ namespace TestCore
             // Arrange
             _viewModel.ProductSearchText = "";
             
+            var searchParameter = "xyz";
             // Act
-            _viewModel.SearchProducts("xyz");
-            
+            _viewModel.SearchProducts(searchParameter: searchParameter);
+
             // Assert
             Assert.That(_viewModel.AvailableProducts.Count, Is.EqualTo(0));
-            Assert.That(_viewModel.MyMessage, Is.EqualTo("Geen producten gevonden"));
+            Assert.That(_viewModel.MyMessage, Is.EqualTo($"Geen producten gevonden met \"{searchParameter}\""));
         }
 
         [Test]
