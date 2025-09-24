@@ -53,7 +53,10 @@ namespace Grocery.App.ViewModels
                     AvailableProducts.Add(product);
                 }
             }
-            MyMessage = AvailableProducts.Count == 0 ? "Geen producten gevonden" : string.Empty;
+            if (AvailableProducts.Count == 0 && !string.IsNullOrWhiteSpace(q))
+            {
+                MyMessage = $"Geen producten gevonden met \"{q}\"";
+            }
         }
 
         partial void OnProductSearchTextChanged(string searchParam)
