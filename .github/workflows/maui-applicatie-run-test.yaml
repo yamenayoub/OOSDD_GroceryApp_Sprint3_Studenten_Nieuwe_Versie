@@ -21,7 +21,10 @@ jobs:
  
       - name: Installeer MAUI workloads
         run: dotnet workload install maui
- 
+
+      - name: Mappen opruimen
+      - run: dotnet clean
+      
       - name: Herstel afhankelijkheden
         run: dotnet restore
  
