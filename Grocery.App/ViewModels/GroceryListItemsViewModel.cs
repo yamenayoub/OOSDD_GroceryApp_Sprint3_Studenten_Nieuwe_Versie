@@ -17,13 +17,52 @@ namespace Grocery.App.ViewModels
         private readonly IFileSaverService _fileSaverService;
         
         public ObservableCollection<GroceryListItem> MyGroceryListItems { get; set; } = [];
+
         public ObservableCollection<Product> AvailableProducts { get; set; } = [];
 
         [ObservableProperty]
         GroceryList groceryList = new(0, "None", DateOnly.MinValue, "", 0);
+        
         [ObservableProperty]
-        string myMessage;
+        string myMessage = "Er zijn geen producten meer om toe te voegen";
 
+        [ObservableProperty]
+        string productSearchText;
+
+        [RelayCommand]
+        void SearchProducts(string searchParameter)
+        {
+            var q = (searchParameter ?? ProductSearchText)?.Trim();
+
+            // if the searchbar is empty, return the full list.
+            if (string.IsNullOrWhiteSpace(q))
+            {
+                GetAvailableProducts();
+                return;
+            }
+
+            // copy the original AvailableList.
+            ObservableCollection<Product> products = [.. AvailableProducts];
+
+            AvailableProducts.Clear();
+            foreach (var product in products)
+            {
+                // Hier wordt ook gecheckt of de searchQuery zit in de string.
+                if (!string.IsNullOrEmpty(product.Name) && product.Name.Contains(q, StringComparison.OrdinalIgnoreCase))
+                {
+                    AvailableProducts.Add(product);
+                }
+            }
+            if (AvailableProducts.Count == 0 && !string.IsNullOrWhiteSpace(q))
+            {
+                MyMessage = $"Geen producten gevonden met \"{q}\"";
+            }
+        }
+
+        partial void OnProductSearchTextChanged(string searchParam)
+        {
+            SearchProducts(searchParam);
+        }
         public GroceryListItemsViewModel(IGroceryListItemsService groceryListItemsService, IProductService productService, IFileSaverService fileSaverService)
         {
             _groceryListItemsService = groceryListItemsService;
