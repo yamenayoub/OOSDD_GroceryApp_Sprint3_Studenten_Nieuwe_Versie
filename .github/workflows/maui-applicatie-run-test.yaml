@@ -2,9 +2,9 @@ name: maui-applicatie-run-test
 
 on:
   push:
-    branches: [ "main", "release", "develop"]
+    branches: [ "main", "release", "dev"]
   pull_request:
-    branches: [ "main", "release", "develop" ]
+    branches: [ "main", "release", "dev"]
 
 jobs:
   test_applicatie:
