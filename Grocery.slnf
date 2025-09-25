@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "path": "Grocery.sln",
+    "projects": [
+      "Grocery.App/Grocery.App.csproj",
+      "Grocery.Core.Data/Grocery.Core.Data.csproj",
+      "Grocery.Core/Grocery.Core.csproj"
+    ]
+  }
+}
