@@ -20,7 +20,7 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore (TestCore only)
-        run: dotnet restore TestCore/TestCore.csproj
+        run: dotnet restore .\TestCore\TestCore.csproj
 
-      - name: Build (TestCore only)
-        run: dotnet build TestCore/TestCore.csproj --configuration Release --no-restore
+      - name: Test (TestCore only)
+        run: dotnet test .\TestCore\TestCore.csproj
