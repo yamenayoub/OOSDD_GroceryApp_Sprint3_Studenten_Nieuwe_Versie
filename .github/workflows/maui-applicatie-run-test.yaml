@@ -26,6 +26,6 @@ jobs:
         run: dotnet restore
  
       - name: Bouw de applicatie
-        run: dotnet build --configuration Release -f net8.0-windows10.0.19041.0 /p:RuntimeIdentifierOverride=win-x64
+        run: dotnet build Grocery.slnf --configuration Release -f net8.0-windows10.0.19041.0 /p:RuntimeIdentifierOverride=win-x64
                        
                              
