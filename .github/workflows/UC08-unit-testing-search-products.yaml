@@ -19,8 +19,8 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore (TestCore only)
-        run: dotnet restore .\TestCore\TestCore.csproj
+      - name: Restore
+        run: dotnet restore
 
-      - name: Test (TestCore only)
-        run: dotnet test .\TestCore\TestCore.csproj
+      - name: Test 
+        run: dotnet test
