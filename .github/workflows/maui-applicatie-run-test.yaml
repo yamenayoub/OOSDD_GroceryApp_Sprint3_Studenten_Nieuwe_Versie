@@ -27,6 +27,3 @@ jobs:
  
       - name: Bouw Grocery.App project
         run: dotnet build Grocery.App --configuration Release -f net8.0-windows10.0.19041.0 /p:RuntimeIdentifierOverride=win-x64
-        
-                       
-                             
