@@ -2,9 +2,9 @@ name: Windows - Run TestSearchFunction
 
 on:
   push:
-    branches: [ main, dev, feature/** ]
+    branches: [ "main", "dev", "feature/**", "release" ]
   pull_request:
-    branches: [ main, dev ]
+    branches: [ "main", "dev", "release" ]
 
 jobs:
   test:
