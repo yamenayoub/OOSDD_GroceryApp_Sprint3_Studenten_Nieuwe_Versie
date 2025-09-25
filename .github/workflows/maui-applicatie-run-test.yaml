@@ -20,22 +20,13 @@ jobs:
              dotnet-version: 8.0.x
  
       - name: Installeer MAUI workloads
-        run: dotnet workload install maui
-
-      - name: Mappen opruimen
-      - run: dotnet clean
+        run: dotnet workload install maui-windows
       
       - name: Herstel afhankelijkheden
         run: dotnet restore
  
       - name: Bouw Grocery.App project
         run: dotnet build Grocery.App --configuration Release -f net8.0-windows10.0.19041.0 /p:RuntimeIdentifierOverride=win-x64
-        
-      - name: Bouw Grocery.Core project
-        run: dotnet build Grocery.Core --configuration Release -f net8.0-windows10.0.19041.0 /p:RuntimeIdentifierOverride=win-x64
-        
-      - name: Bouw Grocery.Core.Data project
-        run: dotnet build Grocery.Core.Data --configuration Release -f net8.0-windows10.0.19041.0 /p:RuntimeIdentifierOverride=win-x64
         
                        
                              
