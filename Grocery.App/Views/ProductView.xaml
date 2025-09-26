@@ -4,7 +4,9 @@
              xmlns:vm="clr-namespace:Grocery.App.ViewModels"
              x:Class="Grocery.App.Views.ProductView"
              Title="ProductView">
-    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Export de producten lijst" Command="{Binding ExportProductsListAsJsonCommand}"  IconImageSource="{FontImage Glyph='&#xf30c;', Color=Black, Size=22}" />
+    </ContentPage.ToolbarItems>
     <Shell.TitleView>
         <Grid>
             <Label Text="Producten" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />

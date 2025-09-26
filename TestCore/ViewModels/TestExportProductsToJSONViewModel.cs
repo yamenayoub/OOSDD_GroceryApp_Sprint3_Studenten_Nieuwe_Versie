@@ -1,28 +1,22 @@
-﻿using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using Grocery.Core.Interfaces.Services;
 using Grocery.Core.Models;
-using Grocery.Core.Services;
 using System.Collections.ObjectModel;
-using System.Reflection.Metadata;
 using System.Text.Json;
-using System.Windows.Input;
 
-namespace Grocery.App.ViewModels
+namespace TestCore.ViewModels
 {
-    public partial class ProductViewModel : BaseViewModel
+    public partial class TestExportProductsToJSONViewModel
     {
         private readonly IFileSaverService _fileSaverService;
 
         public ObservableCollection<Product> Products { get; set; }
 
-        public ProductViewModel(IProductService productService, IFileSaverService fileSaverService)
+        public TestExportProductsToJSONViewModel(IProductService productService, IFileSaverService fileSaverService)
         {
             Products = new(productService.GetAll());
             _fileSaverService = fileSaverService;
         }
-
 
         [RelayCommand]
         public async Task ExportProductsListAsJson(CancellationToken cancellationToken)
@@ -32,13 +26,11 @@ namespace Grocery.App.ViewModels
             try
             {
                 await _fileSaverService.SaveFileAsync("Producten.json", jsonString, cancellationToken);
-                await Toast.Make("Productenlijst is opgeslagen.").Show(cancellationToken);
             }
             catch (Exception ex)
             {
-                await Toast.Make($"Opslaan mislukt: {ex.Message}").Show(cancellationToken);
+                System.Diagnostics.Debug.WriteLine($"Opslaan mislukt: {ex.Message}");
             }
         }
-
     }
 }
